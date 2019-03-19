@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RestSharp;
+using CodingChallenge.Lib;
 
 namespace CodingChallenge
 {
@@ -32,7 +33,7 @@ namespace CodingChallenge
             Planets = swapi.GetAllPlanets();
         }
 
-        static  void PrintOutPlanetInhabitants(String planetName)
+        static void PrintOutPlanetInhabitants(String planetName)
         {
 
         }

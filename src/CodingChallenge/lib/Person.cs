@@ -1,4 +1,4 @@
-namespace CodingChallenge
+namespace CodingChallenge.Lib
 {
     public class Person
     {

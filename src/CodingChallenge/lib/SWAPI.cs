@@ -2,7 +2,7 @@ using RestSharp;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace CodingChallenge
+namespace CodingChallenge.Lib
 {
     public class SWAPI
     {
