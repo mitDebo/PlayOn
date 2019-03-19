@@ -16,7 +16,6 @@ namespace CodingChallenge.Lib
         public List<Person> GetAllPeople()
         {
             IRestRequest request = new RestRequest("people");
-            
             return new List<Person>();
         }
 
@@ -26,5 +25,20 @@ namespace CodingChallenge.Lib
 
             return new List<Planet>();
         }
+    }
+
+    public class PagenatedResult<T>
+    {
+        [JsonProperty("count")]
+        public int Count {get; set;}
+
+        [JsonProperty("next")]
+        public string Next {get; set;}
+
+        [JsonProperty("previous")]
+        public string Previous {get;set;}
+
+        [JsonProperty("results")]
+        public List<T> Results {get; set;}
     }
 }
