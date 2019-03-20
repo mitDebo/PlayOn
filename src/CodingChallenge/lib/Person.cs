@@ -33,16 +33,16 @@ namespace CodingChallenge.Lib
         public string Homeworld {get; set;}
 
         [JsonProperty("films")]
-        public List<string> Films {get; set;}
+        public IList<string> Films {get; set;}
 
         [JsonProperty("species")]
-        public List<string> Species {get; set;}
+        public IList<string> Species {get; set;}
 
         [JsonProperty("nastarshipsme")]
-        public List<string> Starships {get; set;}
+        public IList<string> Starships {get; set;}
 
         [JsonProperty("vechicles")]
-        public List<string> Vechicles {get; set;}
+        public IList<string> Vechicles {get; set;}
 
         [JsonProperty("url")]
         public string Url {get; set;}

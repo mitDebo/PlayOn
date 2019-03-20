@@ -33,10 +33,10 @@ namespace CodingChallenge.Lib
         public string SurfaceWater {get; set;}
 
         [JsonProperty("residents")]        
-        public List<string> Residents {get; set;}
+        public IList<string> Residents {get; set;}
 
         [JsonProperty("films")]        
-        public List<string> Films {get; set;}
+        public IList<string> Films {get; set;}
 
         [JsonProperty("url")]        
         public string Url {get; set;}

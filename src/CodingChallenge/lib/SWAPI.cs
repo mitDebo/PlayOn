@@ -1,29 +1,77 @@
 using RestSharp;
+using RestSharp.Serialization;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using CodingChallenge.Interfaces;
 
 namespace CodingChallenge.Lib
 {
-    public class SWAPI
+    public class SWAPI : ISWAPI
     {
-        IRestClient client;
+        public IRestClient Client { 
+            get; 
+            internal set; 
+        }
+        const string PAGE_QUERY_PARAM = "?page=";
 
         public SWAPI()
         {
-            client = new RestClient("https://swapi.co");
+            Client = new RestClient("https://swapi.co/api");
         }
 
         public List<Person> GetAllPeople()
         {
-            IRestRequest request = new RestRequest("people");
-            return new List<Person>();
+            List<Person> allPeople = new List<Person>();
+            
+            PagenatedResult<Person> currentPage = GetPagenatedResult<Person>("people");
+            allPeople.AddRange(currentPage.Results);
+            while (currentPage.Next != null)
+            {
+                string nextUrl = currentPage.Next;
+                currentPage = GetPagenatedResult<Person>("people", nextUrl.Substring(nextUrl.IndexOf(PAGE_QUERY_PARAM) + PAGE_QUERY_PARAM.Length));
+                allPeople.AddRange(currentPage.Results);
+            }
+            
+            return allPeople;
         }
 
         public List<Planet> GetAllPlanets()
         {
-            IRestRequest request = new RestRequest("planets");
+            List<Planet> allPlanets = new List<Planet>();
+            
+            string endpoint = "planets";
 
-            return new List<Planet>();
+            PagenatedResult<Planet> currentPage = GetPagenatedResult<Planet>(endpoint);
+            allPlanets.AddRange(currentPage.Results);
+            while (currentPage.Next != null)
+            {
+                string nextUrl = currentPage.Next;
+                currentPage = GetPagenatedResult<Planet>(endpoint, nextUrl.Substring(nextUrl.IndexOf(PAGE_QUERY_PARAM) + PAGE_QUERY_PARAM.Length));
+                allPlanets.AddRange(currentPage.Results);
+            }
+            
+            return allPlanets;
+        }
+
+        private PagenatedResult<T> GetPagenatedResult<T>(string endpoint, string pageNum = "1")
+        {
+            IRestRequest request = new RestRequest(endpoint);
+            request.AddParameter("page", pageNum);
+
+            IRestResponse response = Client.Get(request);
+            PagenatedResult<T> currentPage;
+            
+            if (response.IsSuccessful)
+            {
+                currentPage = JsonConvert.DeserializeObject<PagenatedResult<T>>(response.Content);
+            } 
+            else 
+            {
+                throw new Exception("Error reading from the API");
+            }
+
+            return currentPage;
         }
     }
 
