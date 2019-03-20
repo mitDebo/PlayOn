@@ -10,6 +10,16 @@ This solution was built using Visual Studio Code. It also uses RestSharp (https:
 If you need help setting up your Visual Studio Code environment, this post is a good primer (https://medium.com/edgefund/c-development-with-visual-studio-code-b860cc71a5ec)
 
 ## To Run
+After installing the pre-requisite packages, a restore may be required. Open Visiual Studio, navigate to a Terminal tab, and issue a restore command
+
+`dotnet restore`
+
+Then build
+
+`dotnet build`
+
+At this point, the program should hopefully be compiled and ready to go.
+
 The program takes no parameters, or a single parameter. To run in Visual Studio Code, open a terminal in the program's folder, and type
 
 `dotnet run`
