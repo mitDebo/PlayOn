@@ -17,19 +17,28 @@ namespace CodingChallenge.Lib
             Homeworld = new List<Person>();
             All = new HashSet<Person>();
         }
-
+        
+        /// <summary>
+        /// Adds a resident to a population of a planet
+        /// </summary>
         public void AddResident(Person person)
         {
             Residents.Add(person);
             All.Add(person);
         }
 
+        /// <summary>
+        /// Adds a person that claims this planet as their homeworld
+        /// </summary>
         public void AddHomeworld(Person person)
         {
             Homeworld.Add(person);
             All.Add(person);
         }
 
+        /// <summary>
+        /// Print all the residents of the world
+        /// </summary>
         public void PrintResidents()
         {
             Console.WriteLine(String.Format("Residents of {0}:", PlanetName));
@@ -37,6 +46,9 @@ namespace CodingChallenge.Lib
                 Console.WriteLine(String.Format("\t{0}", p.Name));
         }
 
+        /// <summary>
+        /// Print everyone that calls this world their homeworld
+        /// </summary>
         public void PrintHomeworld()
         {
             Console.WriteLine(String.Format("People that call {0} thier homeworld:", PlanetName));
@@ -44,6 +56,9 @@ namespace CodingChallenge.Lib
                 Console.WriteLine(String.Format("\t{0}", p.Name));
         }
 
+        /// <summary>
+        /// Print everyone that is either a resident or calls this world their homeworld
+        /// </summary>
         public void PrintAll()
         {
             Console.WriteLine(String.Format("Everyone that has lived on {0}:", PlanetName));

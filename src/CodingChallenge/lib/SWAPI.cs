@@ -20,53 +20,59 @@ namespace CodingChallenge.Lib
             Client = new RestClient("https://swapi.co/api");
         }
 
+        /// <summary>
+        /// Gets all the people from the Star Wars API
+        /// </summary>
         public List<Person> GetAllPeople()
         {
             List<Person> allPeople = new List<Person>();
             
             string endpoint = "people";
 
-            PagenatedResult<Person> currentPage = GetPagenatedResult<Person>(endpoint);
+            PaginatedResult<Person> currentPage = GetPaginatedResult<Person>(endpoint);
             allPeople.AddRange(currentPage.Results);
             while (currentPage.Next != null)
             {
                 string nextUrl = currentPage.Next;
-                currentPage = GetPagenatedResult<Person>(endpoint, nextUrl.Substring(nextUrl.IndexOf(PAGE_QUERY_PARAM) + PAGE_QUERY_PARAM.Length));
+                currentPage = GetPaginatedResult<Person>(endpoint, nextUrl.Substring(nextUrl.IndexOf(PAGE_QUERY_PARAM) + PAGE_QUERY_PARAM.Length));
                 allPeople.AddRange(currentPage.Results);
             }
             
             return allPeople;
         }
 
+        /// <summary>
+        /// Gets all the planets from the Star Wars API
+        /// </summary>
         public List<Planet> GetAllPlanets()
         {
             List<Planet> allPlanets = new List<Planet>();
             
             string endpoint = "planets";
 
-            PagenatedResult<Planet> currentPage = GetPagenatedResult<Planet>(endpoint);
+            PaginatedResult<Planet> currentPage = GetPaginatedResult<Planet>(endpoint);
             allPlanets.AddRange(currentPage.Results);
             while (currentPage.Next != null)
             {
                 string nextUrl = currentPage.Next;
-                currentPage = GetPagenatedResult<Planet>(endpoint, nextUrl.Substring(nextUrl.IndexOf(PAGE_QUERY_PARAM) + PAGE_QUERY_PARAM.Length));
+                currentPage = GetPaginatedResult<Planet>(endpoint, nextUrl.Substring(nextUrl.IndexOf(PAGE_QUERY_PARAM) + PAGE_QUERY_PARAM.Length));
                 allPlanets.AddRange(currentPage.Results);
             }
             
             return allPlanets;
         }
 
-        private PagenatedResult<T> GetPagenatedResult<T>(string endpoint, string pageNum = "1")
+        private PaginatedResult<T> GetPaginatedResult<T>(string endpoint, string pageNum = "1")
         {
             IRestRequest request = new RestRequest(endpoint);
             request.AddParameter("page", pageNum);
 
             IRestResponse response = Client.Get(request);
-            PagenatedResult<T> currentPage;
+            PaginatedResult<T> currentPage;
             
             if (response.IsSuccessful)
             {
-                currentPage = JsonConvert.DeserializeObject<PagenatedResult<T>>(response.Content);
+                currentPage = JsonConvert.DeserializeObject<PaginatedResult<T>>(response.Content);
             } 
             else 
             {
@@ -77,7 +83,10 @@ namespace CodingChallenge.Lib
         }
     }
 
-    public class PagenatedResult<T>
+    /// <summary>
+    /// Simple encapsulating class to deal with pagination
+    /// </summary>
+    public class PaginatedResult<T>
     {
         [JsonProperty("count")]
         public int Count {get; set;}

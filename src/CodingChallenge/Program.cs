@@ -31,13 +31,19 @@ namespace CodingChallenge
             }
         }
 
+        /// <summary>
+        /// Prints a list of all people and planets from the Star Wars API
+        /// </summary>
         public void PrintOutAllPlanetsAndPeople()
         {
             PrintAllPeople();
             PrintAllPlanets();
         }
 
-        public void PrintOutPlanetInhabitants(string planetName)
+        /// <summary>
+        /// Given a planet, prints out everyone associated with that planet
+        /// </summary>
+        void PrintOutPlanetInhabitants(string planetName)
         {
             if (!InhabitantLookup.ContainsKey(planetName.ToLower()))
             {
@@ -46,8 +52,8 @@ namespace CodingChallenge
             }
 
             Population pop = InhabitantLookup[planetName.ToLower()];
-            pop.PrintHomeworld();
-            pop.PrintResidents();
+            pop.PrintAll();
+            
         }
 
         void GetInfoFromSWAPI()
