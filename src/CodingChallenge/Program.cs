@@ -1,17 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using RestSharp;
+using CodingChallenge.Interfaces;
 using CodingChallenge.Lib;
 
 namespace CodingChallenge
 {
     public class Program
     {
-        IList<Person> People { get; set; }
-        IList<Planet> Planets { get; set; }
-        IDictionary<string, Population> InhabitantLookup;
+        public IList<Person> People { get; private set; }
+        public IList<Planet> Planets { get; private set; }
+        public IDictionary<string, Population> InhabitantLookup { get; private set; }
+        public ISWAPI SWAPI { get; internal set; }
 
         public Program()
+        {
+            SWAPI = new SWAPI();
+        }
+
+        public void Init()
         {
             GetInfoFromSWAPI();            
             PopulateLookupTables();
@@ -24,6 +31,7 @@ namespace CodingChallenge
             else
             {
                 Program p = new Program();
+                p.Init();
                 if (args.Length == 1)
                     p.PrintOutPlanetInhabitants(args[0]);
                 else
@@ -58,9 +66,8 @@ namespace CodingChallenge
 
         void GetInfoFromSWAPI()
         {
-            SWAPI swapi = new SWAPI();
-            People = swapi.GetAllPeople();
-            Planets = swapi.GetAllPlanets();
+            People = SWAPI.GetAllPeople();
+            Planets = SWAPI.GetAllPlanets();
         }        
 
         void PrintAllPeople()

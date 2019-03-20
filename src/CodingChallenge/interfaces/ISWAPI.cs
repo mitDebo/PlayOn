@@ -5,7 +5,7 @@ namespace CodingChallenge.Interfaces
 {
     public interface ISWAPI
     {
-        List<Person> GetAllPeople();
-        List<Planet> GetAllPlanets();
+        IList<Person> GetAllPeople();
+        IList<Planet> GetAllPlanets();
     }
 }

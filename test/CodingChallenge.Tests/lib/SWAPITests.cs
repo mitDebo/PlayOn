@@ -1,5 +1,4 @@
 using CodingChallenge.Lib;
-using CodingChallenge.Interfaces;
 using System;
 using System.Collections.Generic;
 using RestSharp;

@@ -23,7 +23,7 @@ namespace CodingChallenge.Lib
         /// <summary>
         /// Gets all the people from the Star Wars API
         /// </summary>
-        public List<Person> GetAllPeople()
+        public IList<Person> GetAllPeople()
         {
             List<Person> allPeople = new List<Person>();
             
@@ -44,7 +44,7 @@ namespace CodingChallenge.Lib
         /// <summary>
         /// Gets all the planets from the Star Wars API
         /// </summary>
-        public List<Planet> GetAllPlanets()
+        public IList<Planet> GetAllPlanets()
         {
             List<Planet> allPlanets = new List<Planet>();
             
