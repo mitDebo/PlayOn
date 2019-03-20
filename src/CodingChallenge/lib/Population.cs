@@ -41,9 +41,9 @@ namespace CodingChallenge.Lib
         /// </summary>
         public void PrintResidents()
         {
-            Console.WriteLine(String.Format("Residents of {0}:", PlanetName));
+            Console.WriteLine("Residents of {0}:", PlanetName);
             foreach (Person p in Residents)
-                Console.WriteLine(String.Format("\t{0}", p.Name));
+                Console.WriteLine("\t{0}", p.Name);
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace CodingChallenge.Lib
         /// </summary>
         public void PrintHomeworld()
         {
-            Console.WriteLine(String.Format("People that call {0} thier homeworld:", PlanetName));
+            Console.WriteLine("People that call {0} thier homeworld:", PlanetName);
             foreach (Person p in Homeworld)
-                Console.WriteLine(String.Format("\t{0}", p.Name));
+                Console.WriteLine("\t{0}", p.Name);
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace CodingChallenge.Lib
         /// </summary>
         public void PrintAll()
         {
-            Console.WriteLine(String.Format("Everyone that has lived on {0}:", PlanetName));
+            Console.WriteLine("Everyone that has lived on {0}:", PlanetName);
             foreach (Person p in All)
-                Console.WriteLine(String.Format("\t{0}", p.Name));
+                Console.WriteLine("\t{0}", p.Name);
         }
     }
 }

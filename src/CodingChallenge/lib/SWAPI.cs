@@ -67,7 +67,7 @@ namespace CodingChallenge.Lib
             IRestRequest request = new RestRequest(endpoint);
             request.AddParameter("page", pageNum);
 
-            IRestResponse response = Client.Get(request);
+            IRestResponse response = Client.Execute(request);
             PaginatedResult<T> currentPage;
             
             if (response.IsSuccessful)
@@ -86,7 +86,7 @@ namespace CodingChallenge.Lib
     /// <summary>
     /// Simple encapsulating class to deal with pagination
     /// </summary>
-    public class PaginatedResult<T>
+    class PaginatedResult<T>
     {
         [JsonProperty("count")]
         public int Count {get; set;}

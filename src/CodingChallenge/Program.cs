@@ -47,7 +47,7 @@ namespace CodingChallenge
         {
             if (!InhabitantLookup.ContainsKey(planetName.ToLower()))
             {
-                Console.WriteLine(String.Format("{0} does not exist in Star Wars", planetName));
+                Console.WriteLine("{0} does not exist in Star Wars", planetName);
                 return;
             }
 
@@ -65,16 +65,16 @@ namespace CodingChallenge
 
         void PrintAllPeople()
         {
-            Console.WriteLine("PEOPLE:");
+            Console.WriteLine("PEOPLE ({0}):", People.Count);
             foreach (Person p in People)
-                Console.WriteLine(String.Format("\t{0}", p.Name));
+                Console.WriteLine("\t{0}", p.Name);
         }
 
         void PrintAllPlanets()
         {
-            Console.WriteLine("PLANETS");
+            Console.WriteLine("PLANETS ({0}):", Planets.Count);
             foreach (Planet p in Planets)
-                Console.WriteLine(String.Format("\t{0}", p.Name));
+                Console.WriteLine("\t{0}", p.Name);
         }
 
         void PopulateLookupTables()

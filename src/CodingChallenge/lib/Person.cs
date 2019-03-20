@@ -38,11 +38,11 @@ namespace CodingChallenge.Lib
         [JsonProperty("species")]
         public IList<string> Species {get; set;}
 
-        [JsonProperty("nastarshipsme")]
+        [JsonProperty("starships")]
         public IList<string> Starships {get; set;}
 
-        [JsonProperty("vechicles")]
-        public IList<string> Vechicles {get; set;}
+        [JsonProperty("vehicles")]
+        public IList<string> Vehicles {get; set;}
 
         [JsonProperty("url")]
         public string Url {get; set;}
