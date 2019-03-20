@@ -18,11 +18,11 @@ or
 
 `dotnet run <planet_name>`
 
-Yuo can run the tests in the test project using
+You can run the tests in the test project using
 
 `dotnet tests`
 
 ## A quick note
-Originally, looking at the API, I assume it may be possible for someone to be consider a particular planet their homeworld, but be considered a resident of a different world. After completing this challenge, though, and testing it out a few times, I could not find any examples of this being the case. As such, this program maybe does twice as much work as it probably actually needed to do, since it stores references for each planets members that consider it a homeworld, and its residents, and these two lists are apparently always the same.
+Originally, looking at the API, I assumed it may be possible for someone to consider a particular planet their homeworld, and also be considered a resident of a different world. After completing this challenge, though, and testing it out a few times, I could not find any examples of this being the case. As such, this program maybe does twice as much work as it probably actually needed to do, since it stores references for each planet's members that consider it a homeworld, and its residents, and these two lists are apparently always the same.
 
 Oh well. My tests test for that possibility at least, and it does this extra work without making any additional calls to the API.
