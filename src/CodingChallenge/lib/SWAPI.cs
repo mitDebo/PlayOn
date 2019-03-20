@@ -24,12 +24,14 @@ namespace CodingChallenge.Lib
         {
             List<Person> allPeople = new List<Person>();
             
-            PagenatedResult<Person> currentPage = GetPagenatedResult<Person>("people");
+            string endpoint = "people";
+
+            PagenatedResult<Person> currentPage = GetPagenatedResult<Person>(endpoint);
             allPeople.AddRange(currentPage.Results);
             while (currentPage.Next != null)
             {
                 string nextUrl = currentPage.Next;
-                currentPage = GetPagenatedResult<Person>("people", nextUrl.Substring(nextUrl.IndexOf(PAGE_QUERY_PARAM) + PAGE_QUERY_PARAM.Length));
+                currentPage = GetPagenatedResult<Person>(endpoint, nextUrl.Substring(nextUrl.IndexOf(PAGE_QUERY_PARAM) + PAGE_QUERY_PARAM.Length));
                 allPeople.AddRange(currentPage.Results);
             }
             
